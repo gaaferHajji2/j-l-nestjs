@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
@@ -8,5 +8,12 @@ export class UsersController {
       { name: 'JLoka-01', job: 'Web Developer' },
       { name: 'JLoka-02', job: 'Mobile App Developer' },
     ];
+  }
+
+  // Note: If we don't set 'id' with param then id will become an object
+  @Get('/:id')
+  public getUserById(@Param('id') id: number, @Query('sort') sort: string) {
+    // console.log(`The id is: ${id}`);
+    return { id: id, name: 'JLoka-01', job: 'ITE Developer', sort };
   }
 }
