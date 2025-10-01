@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Headers, Param, Post, Query } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
@@ -18,8 +18,9 @@ export class UsersController {
   }
 
   @Post('/')
-  public createNewUser(@Body() data) {
+  public createNewUser(@Body() data, @Headers() headers) {
     console.log(`The data is: ${JSON.stringify(data)}`);
+    console.log('headers are: ', headers);
     return { msg: 'User Created Successfully' };
   }
 }
