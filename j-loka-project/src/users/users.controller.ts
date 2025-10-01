@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
@@ -15,5 +15,11 @@ export class UsersController {
   public getUserById(@Param('id') id: number, @Query('sort') sort: string) {
     // console.log(`The id is: ${id}`);
     return { id: id, name: 'JLoka-01', job: 'ITE Developer', sort };
+  }
+
+  @Post('/')
+  public createNewUser(@Body() data) {
+    console.log(`The data is: ${JSON.stringify(data)}`);
+    return { msg: 'User Created Successfully' };
   }
 }
