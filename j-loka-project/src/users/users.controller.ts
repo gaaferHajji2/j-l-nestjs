@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller('users')
-export class UsersController {}
+export class UsersController {
+  @Get('/')
+  public getUsers() {
+    return [
+      { name: 'JLoka-01', job: 'Web Developer' },
+      { name: 'JLoka-02', job: 'Mobile App Developer' },
+    ];
+  }
+}
