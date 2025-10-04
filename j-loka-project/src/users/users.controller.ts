@@ -12,7 +12,11 @@ import {
 @Controller('users')
 export class UsersController {
   @Get('/')
-  public getUsers() {
+  public getUsers(
+    @Query('limit', ParseIntPipe) limit: number,
+    @Query('page', ParseIntPipe) page: number,
+  ) {
+    console.log(`The limit is: ${limit}, and page is: ${page}`);
     return [
       { name: 'JLoka-01', job: 'Web Developer' },
       { name: 'JLoka-02', job: 'Mobile App Developer' },
@@ -21,17 +25,13 @@ export class UsersController {
 
   // Note: If we don't set 'id' with param then id will become an object
   @Get('/:id')
-  public getUserById(
-    @Param('id', ParseIntPipe) id: number,
-    @Query('sort') sort: string,
-  ) {
+  public getUserById(@Param('id', ParseIntPipe) id: number) {
     // console.log(`The id is: ${id}`);
     return {
       type_: typeof id,
       id: id,
       name: 'JLoka-01',
       job: 'ITE Developer',
-      sort,
     };
   }
 
