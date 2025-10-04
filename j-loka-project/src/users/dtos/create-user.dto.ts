@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { IsEmail, IsNotEmpty, IsOptional, IsString, Length, max, min } from 'class-validator'
+import { IsEmail, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator'
 
 export class CreateUserDto {
 	@IsString()
