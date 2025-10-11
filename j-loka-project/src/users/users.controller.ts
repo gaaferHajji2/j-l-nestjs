@@ -1,36 +1,24 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Post,
-  Query,
-  ParseIntPipe,
-  DefaultValuePipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { GetUsersParamDto } from './dtos/users-param.dto';
 
 @Controller('users')
 export class UsersController {
-  @Get('/')
-  public getUsers(
-    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
-  ) {
-    console.log(`The limit is: ${limit}, and page is: ${page}`);
-    return [
-      { name: 'JLoka-01', job: 'Web Developer' },
-      { name: 'JLoka-02', job: 'Mobile App Developer' },
-    ];
-  }
-
   // Note: If we don't set 'id' with param then id will become an object
   @Get('/:id')
-  public getUserById(@Param('id', ParseIntPipe) id: number) {
-    // console.log(`The id is: ${id}`);
+  public getUserById(@Param() t1: GetUsersParamDto) {
     return {
-      type_: typeof id,
-      id: id,
+      type_: typeof t1,
+      id: t1,
+      name: 'JLoka-01',
+      job: 'ITE Developer',
+    };
+  }
+
+  // To avoid the parsing errors of ts
+  @Get('/')
+  public getUsers() {
+    return {
       name: 'JLoka-01',
       job: 'ITE Developer',
     };
