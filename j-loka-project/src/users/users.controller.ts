@@ -39,6 +39,8 @@ export class UsersController {
   @Post('/')
   public createNewUser(@Body() userDto: CreateUserDto) {
     console.log(`The data is: ${JSON.stringify(userDto)}`);
+    console.log(typeof userDto); // Object
+    console.log(userDto instanceof CreateUserDto); // true, but without transformer: true in global pipe, it will be: false
     return { msg: 'User Created Successfully' };
   }
 }
