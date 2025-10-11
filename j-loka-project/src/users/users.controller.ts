@@ -8,7 +8,9 @@ import {
   Query,
   ParseIntPipe,
   DefaultValuePipe,
+  ValidationPipe,
 } from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -37,9 +39,8 @@ export class UsersController {
   }
 
   @Post('/')
-  public createNewUser(@Body() data, @Headers() headers) {
-    console.log(`The data is: ${JSON.stringify(data)}`);
-    console.log('headers are: ', headers);
+  public createNewUser(@Body(new ValidationPipe()) userDto: CreateUserDto) {
+    console.log(`The data is: ${JSON.stringify(userDto)}`);
     return { msg: 'User Created Successfully' };
   }
 }
