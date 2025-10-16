@@ -1,23 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { IsEmail, IsNotEmpty, IsOptional, IsString, Length } from "class-validator";
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateUserDto } from './create-user.dto';
 
-export class UpdateUserPartDTO {
-  @IsString()
-  @IsNotEmpty()
-  @Length(3, 255)
-  firstName: string;
-
-  @IsString()
-  @IsOptional()
-  @Length(3, 255)
-  lastName?: string;
-
-  @IsEmail()
-  @IsNotEmpty()
-  email: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @Length(5, 150)
-  password: string;
-}
+// Make all properties of CreateUserDto are optional
+export class UpdateUserPartDTO extends PartialType(CreateUserDto) {}
