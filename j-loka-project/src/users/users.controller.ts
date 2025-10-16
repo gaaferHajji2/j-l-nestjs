@@ -1,6 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamDto } from './dtos/users-param.dto';
+import { UpdateUserPartDTO } from './dtos/update-user-part.dto';
 
 @Controller('users')
 export class UsersController {
@@ -30,5 +32,10 @@ export class UsersController {
     console.log(typeof userDto); // Object
     console.log(userDto instanceof CreateUserDto); // true, but without transformer: true in global pipe, it will be: false
     return { msg: 'User Created Successfully' };
+  }
+
+  @Patch()
+  public updateUserPart(@Body() user: UpdateUserPartDTO) {
+    return user;
   }
 }
