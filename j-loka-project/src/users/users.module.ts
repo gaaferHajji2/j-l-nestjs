@@ -5,6 +5,6 @@ import { UsersService } from './users.service';
 @Module({
   // eslint-disable-next-line prettier/prettier
   controllers: [UsersController],
-  providers: [UsersService]
+  providers: [UsersService],
 })
 export class UsersModule {}
