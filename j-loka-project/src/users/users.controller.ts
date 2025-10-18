@@ -3,27 +3,22 @@ import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamDto } from './dtos/users-param.dto';
 import { UpdateUserPartDTO } from './dtos/update-user-part.dto';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
   // Note: If we don't set 'id' with param then id will become an object
   @Get('/:id')
   public getUserById(@Param() t1: GetUsersParamDto) {
-    return {
-      type_: typeof t1,
-      id: t1,
-      name: 'JLoka-01',
-      job: 'ITE Developer',
-    };
+    return this.usersService.getUserById(t1.id);
   }
 
   // To avoid the parsing errors of ts
   @Get('/')
   public getUsers() {
-    return {
-      name: 'JLoka-01',
-      job: 'ITE Developer',
-    };
+    return this.usersService.getAllUsers();
   }
 
   @Post('/')
