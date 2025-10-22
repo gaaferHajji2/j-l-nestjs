@@ -1,8 +1,14 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class UsersService {
+
+    constructor(
+        @Inject(forwardRef(() => AuthService))
+        private readonly authService: AuthService
+    ) {}
     
     private users = [
         {id: 1, name: 'JLoka-01', email: 'jloka1@jloka.com'},
@@ -15,6 +21,13 @@ export class UsersService {
     }
 
     public getUserById(id: number) {
+
+        const isAuth = this.authService.isAuth()
+
+        if(!this.authService.isAuth()) return {}
+
+        console.log(`isAuth: ${isAuth}`)
+
         const user = this.users.find(e => e.id == id);
 
         if(user == undefined) {
