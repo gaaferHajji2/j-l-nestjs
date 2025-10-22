@@ -1,21 +1,29 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class PostsService {
 
+    constructor(private readonly usersService: UsersService) {
+
+    }
+
     public getAllPostsForUser(userId: string) {
+
+        const user = this.usersService.getUserById(parseInt(userId));
+
         return [{
             'name': 'Post-01',
-            userId,
+            user,
             'date': '2000-01-01'
         }, {
             'name': 'Post-02',
-            userId,
+            user,
             'date': '2000-01-01'
         }, {
             'name': 'Post-03',
-            userId,
+            user,
             'date': '2000-01-01'
         }]
     }
