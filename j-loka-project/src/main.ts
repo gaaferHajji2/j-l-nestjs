@@ -20,7 +20,14 @@ async function bootstrap() {
   /**
    * For Swagger Building
    */
-  const builder = new DocumentBuilder().setVersion('1.0').build();
+  const builder = new DocumentBuilder()
+    .setTitle('JLoka Testing nestjs')
+    .setDescription(
+      'JLoka Test NestJS For Building wep apis with real-time, host now is: http://localhost:3000',
+    )
+    .addServer('http://localhost:3000')
+    .setVersion('1.0')
+    .build();
 
   const doc = SwaggerModule.createDocument(app, builder);
   // the first param is the path to document
