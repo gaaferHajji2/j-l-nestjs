@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Param } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 import { PostsService } from './posts.service'
+import { CreatePostDto } from './dto/create-post.dto'
 
 @Controller('posts')
 export class PostsController {
@@ -14,5 +15,10 @@ export class PostsController {
     @Get('/')
     public getAllPosts() {
         return this.postsService.getAllPosts();
+    }
+
+    @Post('/')
+    public createPost(@Body() createPostDto: CreatePostDto) {
+
     }
 }

@@ -22,6 +22,13 @@ export class UsersController {
 
   // Note: If we don't set 'id' with param then id will become an object
   @Get('/:id')
+  @ApiOperation({
+    summary: 'Get user by id',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Return user by id',
+  })
   public getUserById(@Param() t1: GetUsersParamDto) {
     return this.usersService.getUserById(t1.id);
   }
