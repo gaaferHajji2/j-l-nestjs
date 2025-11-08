@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { IsArray, IsDate, IsEnum, IsJSON, IsNotEmpty, IsOptional, IsString, IsUrl, Length, Matches, MinDate, ValidateNested } from "class-validator";
+import { IsArray, IsDate, IsEnum, IsJSON, IsNotEmpty, IsOptional, IsString, IsUrl, Length, Matches, MinDate, MinLength, ValidateNested } from "class-validator";
 import { PostStatus } from "../enum/post-status.enum";
 import { PostType } from "../enum/post-type.enum";
 import { Type } from "class-transformer";
@@ -52,7 +51,8 @@ export class CreatePostDto {
     publishedOn?: Date;
 
     @IsArray()
-    @IsString()
+    @IsString({ each: true }) // that means that tags are array of string
+    @MinLength(1, { each: true }) // that means that string in tags must contains at least 1-character
     @IsOptional()
     tags?: string[];
 
