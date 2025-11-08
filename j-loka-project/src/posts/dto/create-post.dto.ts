@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { IsArray, IsDate, IsEnum, IsNotEmpty, IsOptional, IsString, IsUrl, Length, MinDate, ValidateNested } from "class-validator";
+import { IsArray, IsDate, IsEnum, IsNotEmpty, IsOptional, IsString, IsUrl, Length, Matches, MinDate, ValidateNested } from "class-validator";
 import { PostStatus } from "../enum/post-status.enum";
 import { PostType } from "../enum/post-type.enum";
 import { Type } from "class-transformer";
@@ -20,6 +20,7 @@ export class CreatePostDto {
     @IsString()
     @Length(2, 255)
     @IsNotEmpty()
+    @Matches('/^[a-z0-9]+(?:-[a-z0-9]+)*$/') // from qwen.ai
     slug: string;
 
     @IsEnum(PostStatus)
