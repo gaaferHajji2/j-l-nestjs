@@ -20,7 +20,7 @@ export class CreatePostDto {
     @IsString()
     @Length(2, 255)
     @IsNotEmpty()
-    @Matches('/^[a-z0-9]+(?:-[a-z0-9]+)*$/') // from qwen.ai
+    @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/) // from qwen.ai
     slug: string;
 
     @IsEnum(PostStatus)
