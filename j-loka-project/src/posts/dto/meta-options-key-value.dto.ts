@@ -6,7 +6,6 @@ export class MetaOptionsKeyValue {
   @IsNotEmpty()
   key: string;
 
-  @IsString()
   @IsNotEmpty()
-  value: string;
+  value: any;
 }
