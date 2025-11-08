@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-
 import { IsArray, IsDate, IsEnum, IsJSON, IsNotEmpty, IsOptional, IsString, IsUrl, Length, Matches, MinDate, MinLength, ValidateNested } from "class-validator";
 import { PostStatus } from "../enum/post-status.enum";
 import { PostType } from "../enum/post-type.enum";
@@ -8,7 +7,7 @@ import { MetaOptionsKeyValue } from "./meta-options-key-value.dto";
 
 export class CreatePostDto {
     @IsString()
-    @Length(4, 255)
+    @Length(2, 255)
     @IsNotEmpty()
     title: string;
 
