@@ -18,7 +18,7 @@ export class CreatePostDto {
     postType: PostType;
 
     @IsString()
-    @Length(4, 255)
+    @Length(2, 255)
     @IsNotEmpty()
     slug: string;
 
