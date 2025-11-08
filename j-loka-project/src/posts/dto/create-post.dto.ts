@@ -33,7 +33,6 @@ export class CreatePostDto {
     @IsOptional()
     content?: string;
 
-    @IsString()
     @Length(1, 5000)
     @IsOptional()
     @IsJSON() // from qwen.ai
