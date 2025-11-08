@@ -20,7 +20,9 @@ export class CreatePostDto {
     @IsString()
     @Length(2, 255)
     @IsNotEmpty()
-    @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/) // from qwen.ai
+    @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
+        message: 'slug must contains only small letters, digits, hyphen and can\'t start with -'
+    }) // from qwen.ai
     slug: string;
 
     @IsEnum(PostStatus)
