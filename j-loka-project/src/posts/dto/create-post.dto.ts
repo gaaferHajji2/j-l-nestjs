@@ -1,9 +1,11 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { IsArray, IsDate, IsEnum, IsNotEmpty, IsOptional, IsString, IsUrl, Length } from "class-validator";
+import { IsArray, IsDate, IsEnum, IsNotEmpty, IsOptional, IsString, IsUrl, Length, MinDate, ValidateNested } from "class-validator";
 import { PostStatus } from "../enum/post-status.enum";
 import { PostType } from "../enum/post-type.enum";
+import { Type } from "class-transformer";
+import { MetaOptionsKeyValue } from "./meta-options-key-value.dto";
 
 export class CreatePostDto {
     @IsString()
@@ -41,6 +43,8 @@ export class CreatePostDto {
 
     @IsDate()
     @IsOptional()
+    @MinDate(new Date('2000-01-01'))
+    @Type(() => Date)
     publishedOn?: Date;
 
     @IsArray()
@@ -49,6 +53,8 @@ export class CreatePostDto {
     tags?: string[];
 
     @IsArray()
+    @ValidateNested({ each: true })
     @IsOptional()
-    metaOptions: object[];
+    @Type(() => MetaOptionsKeyValue)
+    metaOptions: MetaOptionsKeyValue[];
 }
