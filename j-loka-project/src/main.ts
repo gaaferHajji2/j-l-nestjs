@@ -21,7 +21,7 @@ async function bootstrap() {
    * For Swagger Building
    */
   const builder = new DocumentBuilder()
-    .setTitle('JLoka Testing nestjs')
+    .setTitle('JLoka testing nestjs')
     .setDescription(
       'JLoka Test NestJS For Building wep apis with real-time, host now is: http://localhost:3000',
     )
