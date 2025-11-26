@@ -5,7 +5,6 @@ import { PostType } from "../enum/post-type.enum";
 import { Type } from "class-transformer";
 import { MetaOptionsKeyValue } from "./meta-options-key-value.dto";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-
 export class CreatePostDto {
     @ApiProperty()
     @IsString()
