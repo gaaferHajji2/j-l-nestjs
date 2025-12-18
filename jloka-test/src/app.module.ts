@@ -4,7 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { CatsModule } from './cats/cats.module';
-import { CatsMiddleware } from './cats/cats.middleware';
+// import { CatsMiddleware } from './cats/cats.middleware';
+import { logger } from './cats/cats.middleware';
 
 @Module({
   imports: [UsersModule, EventEmitterModule.forRoot(), CatsModule],
@@ -14,6 +15,7 @@ import { CatsMiddleware } from './cats/cats.middleware';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     // consumer.apply(CatsMiddleware).forRoutes('cats')
-    consumer.apply(CatsMiddleware).forRoutes({ path: 'cats', method: RequestMethod.GET })
+    // consumer.apply(CatsMiddleware).forRoutes({ path: 'cats', method: RequestMethod.GET })
+    consumer.apply(logger).forRoutes({ path: 'cats', method: RequestMethod.GET })
   }
 }
