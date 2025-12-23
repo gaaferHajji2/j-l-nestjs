@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { Cat } from './interfaces/cat.interface';
@@ -17,10 +17,13 @@ export class CatsController {
     async findAll(): Promise<Cat[]> {
         // return this.catsService.findAll();
         // throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
-        throw new HttpException(
-            { status: HttpStatus.FORBIDDEN, message: 'This is a custom message'}, 
-            HttpStatus.FORBIDDEN, 
-            { cause: 'Custom Reason'}
+        // throw new HttpException(
+        //     { status: HttpStatus.FORBIDDEN, message: 'This is a custom message'}, 
+        //     HttpStatus.FORBIDDEN, 
+        //     { cause: 'Custom Reason'}
+        // )
+        throw new BadRequestException('Error-01', 
+            { cause: new Error(), description: 'Simple description about Error-01'}
         )
     }
 }
