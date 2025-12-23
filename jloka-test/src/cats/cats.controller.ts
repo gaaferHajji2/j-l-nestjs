@@ -1,7 +1,8 @@
-import { BadRequestException, Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, HttpException, HttpStatus, Post, UseFilters } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { Cat } from './interfaces/cat.interface';
+import { CatsFilter } from './cats.filter';
 
 @Controller('cats')
 export class CatsController {
@@ -25,5 +26,11 @@ export class CatsController {
         // throw new BadRequestException('Error-01', 
         //     { cause: new Error(), description: 'Simple description about Error-01'}
         // )
+    }
+
+    @Get('/catsFilter')
+    @UseFilters(new CatsFilter())
+    async getException() {
+        throw new BadRequestException()
     }
 }
