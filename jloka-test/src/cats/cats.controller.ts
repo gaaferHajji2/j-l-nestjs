@@ -16,14 +16,14 @@ export class CatsController {
     @Get()
     async findAll(): Promise<Cat[]> {
         // return this.catsService.findAll();
-        // throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
+        throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
         // throw new HttpException(
         //     { status: HttpStatus.FORBIDDEN, message: 'This is a custom message'}, 
         //     HttpStatus.FORBIDDEN, 
         //     { cause: 'Custom Reason'}
         // )
-        throw new BadRequestException('Error-01', 
-            { cause: new Error(), description: 'Simple description about Error-01'}
-        )
+        // throw new BadRequestException('Error-01', 
+        //     { cause: new Error(), description: 'Simple description about Error-01'}
+        // )
     }
 }
