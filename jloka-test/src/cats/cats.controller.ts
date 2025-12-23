@@ -18,7 +18,7 @@ export class CatsController {
         // return this.catsService.findAll();
         // throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
         throw new HttpException(
-            { status: HttpStatus.FORBIDDEN, message: 'This is custom message'}, 
+            { status: HttpStatus.FORBIDDEN, message: 'This is a custom message'}, 
             HttpStatus.FORBIDDEN, 
             { cause: 'Custom Reason'}
         )
