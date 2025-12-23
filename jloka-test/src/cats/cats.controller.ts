@@ -29,7 +29,8 @@ export class CatsController {
     }
 
     @Get('/catsFilter')
-    @UseFilters(new CatsFilter())
+    // @UseFilters(new CatsFilter())
+    @UseFilters(CatsFilter)
     async getException() {
         throw new BadRequestException()
     }
