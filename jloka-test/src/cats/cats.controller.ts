@@ -1,8 +1,9 @@
-import { BadRequestException, Body, Controller, Get, HttpException, HttpStatus, Post, UseFilters } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, HttpException, HttpStatus, Post, UseFilters, UseGuards } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { Cat } from './interfaces/cat.interface';
 import { CatsFilter } from './cats.filter';
+import { AuthGuard } from 'src/auth-guard/auth-guard.guard';
 
 @Controller('cats')
 export class CatsController {
@@ -15,6 +16,7 @@ export class CatsController {
     }
 
     @Get()
+    @UseGuards(AuthGuard)
     async findAll(): Promise<Cat[]> {
         // return this.catsService.findAll();
         throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
