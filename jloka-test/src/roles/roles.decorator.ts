@@ -1,3 +1,4 @@
 import { SetMetadata } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 
-export const Roles = (...args: string[]) => SetMetadata('roles', args);
+export const Roles = Reflector.createDecorator<String[]>()

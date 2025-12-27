@@ -4,12 +4,16 @@ import { CreateCatDto } from './dto/create-cat.dto';
 import { Cat } from './interfaces/cat.interface';
 import { CatsFilter } from './cats.filter';
 import { AuthGuard } from 'src/auth-guard/auth-guard.guard';
+import { Roles } from 'src/roles/roles.decorator';
+import { RolesGuard } from 'src/roles/roles.guard';
 
 @Controller('cats')
 export class CatsController {
     constructor(private readonly catsService: CatsService) {}
 
     @Post()
+    @Roles(['admin'])
+    @UseGuards(RolesGuard)
     async create(@Body() createCatDto: CreateCatDto): Promise<CreateCatDto> {
         this.catsService.create(createCatDto)
         return createCatDto
