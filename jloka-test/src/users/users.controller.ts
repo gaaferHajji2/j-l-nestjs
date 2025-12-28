@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { User } from 'src/user/user.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -15,5 +16,10 @@ export class UsersController {
   @Get('/loka/*$')
   getLoka() {
     return "My name is: Jafar Loka";
+  }
+
+  @Get('/user')
+  getLokaUser(@User() user) {
+    return user
   }
 }
