@@ -6,6 +6,6 @@ export class LoggingInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     console.log('Before calling...')
     const now = Date.now()
-    return next.handle().pipe(tap(() => console.log(`Total time is: ${now - Date.now()}ms`)));
+    return next.handle().pipe(tap(() => console.log(`Total time is: ${Date.now() - now}ms`)));
   }
 }

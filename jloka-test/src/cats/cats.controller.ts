@@ -22,7 +22,7 @@ export class CatsController {
     }
 
     @Get()
-    @UseGuards(AuthGuard)
+    //@UseGuards(AuthGuard)
     async findAll(): Promise<Cat[]> {
         return this.catsService.findAll();
         // throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
