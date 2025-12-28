@@ -6,9 +6,11 @@ import { UsersModule } from './users/users.module';
 import { CatsModule } from './cats/cats.module';
 // import { CatsMiddleware } from './cats/cats.middleware';
 import { logger } from './cats/cats.middleware';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [UsersModule, EventEmitterModule.forRoot(), CatsModule],
+  imports: [UsersModule, EventEmitterModule.forRoot(), CatsModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
