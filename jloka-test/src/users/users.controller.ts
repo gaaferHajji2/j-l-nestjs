@@ -22,4 +22,9 @@ export class UsersController {
   getLokaUser(@User() user) {
     return user
   }
+
+  @Get('/username')
+  getLokaUsername(@User('username') user) {
+    return user
+  }
 }
