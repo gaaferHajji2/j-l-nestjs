@@ -7,4 +7,4 @@ import { UserCreatedListener } from './user-create.listener';
   providers: [UsersService, UserCreatedListener],
   controllers: [UsersController]
 })
-export class UsersModule {}
+export class Users2Module {}

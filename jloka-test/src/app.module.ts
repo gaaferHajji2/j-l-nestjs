@@ -2,14 +2,14 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users2/users.module';
+import { Users2Module } from './users2/users.module';
 import { CatsModule } from './cats/cats.module';
 // import { CatsMiddleware } from './cats/cats.middleware';
 import { logger } from './cats/cats.middleware';
 import { AuthModule } from './auth/auth.module';
-
+import { UsersModule } from './users/users.module';
 @Module({
-  imports: [UsersModule, EventEmitterModule.forRoot(), CatsModule, AuthModule],
+  imports: [Users2Module, EventEmitterModule.forRoot(), CatsModule, AuthModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
