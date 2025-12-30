@@ -1,13 +1,13 @@
-import { IsString, Max, Min } from "class-validator";
+import { IsString, MaxLength, MinLength } from "class-validator";
 
 
 export class SignInDto {
     @IsString()
-    @Min(1)
-    @Max(50)
+    @MinLength(1)
+    @MaxLength(50)
     username: string;
     @IsString()
-    @Min(1)
-    @Max(50)
+    @MinLength(1)
+    @MaxLength(50)
     password: string;
 }
