@@ -6,10 +6,11 @@ import { AuthService } from './auth.service';
 import { UsersModule } from 'src/users/users.module';
 import { jwtConstants } from './constants';
 import { LocalStartegy } from './local.strategy'
+import { JwtStrategy } from './jwt.strategy';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, LocalStartegy],
+  providers: [AuthService, LocalStartegy, JwtStrategy],
   imports: [UsersModule, JwtModule.register({
     global: true,
     secret: jwtConstants.secret,

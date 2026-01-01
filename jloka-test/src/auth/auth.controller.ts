@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signin.dto';
 import { AuthGuard } from './auth.guard';
 import { LocalAuthGuard } from 'src/local-auth/local-auth.guard';
+import { JwtAuthGuard } from 'src/jwt-auth/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -36,6 +37,12 @@ export class AuthController {
     @UseGuards(AuthGuard)
     @Get("profile")
     async profile(@Request() req) {
+        return req.user
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get("passport/profile")
+    async passportProfile(@Request() req) {
         return req.user
     }
 }
