@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Redirect, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signin.dto';
 import { AuthGuard } from './auth.guard';
@@ -25,7 +25,12 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('passport/logout')
     async logout(@Request() req) {
-        return req.logout()
+        return req.logout(function (err) {
+            if(err){
+                throw err
+            }
+            return Redirect('/')
+        })
     }
 
     @UseGuards(AuthGuard)
