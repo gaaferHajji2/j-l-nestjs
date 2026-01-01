@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post, Request, UseGuards }
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signin.dto';
 import { AuthGuard } from './auth.guard';
-import { AuthGuard as PassportAuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from 'src/local-auth/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -14,7 +14,8 @@ export class AuthController {
         return this.authService.signIn(signInDto.username, signInDto.password);
     }
 
-    @UseGuards(PassportAuthGuard('local'))
+    @HttpCode(HttpStatus.OK)
+    @UseGuards(LocalAuthGuard)
     @Post('passport/login')
     async login(@Request() req) {
         return req.user
