@@ -21,6 +21,13 @@ export class AuthController {
         return req.user
     }
 
+    @HttpCode(HttpStatus.OK)
+    @UseGuards(LocalAuthGuard)
+    @Post('passport/logout')
+    async logout(@Request() req) {
+        return req.logout()
+    }
+
     @UseGuards(AuthGuard)
     @Get("profile")
     async profile(@Request() req) {
