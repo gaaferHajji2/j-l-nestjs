@@ -1,20 +1,48 @@
-import { Photo } from "src/photo/photo.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Profile } from '../profile/profile.entity';
+import { Post } from '../post/post.entity';
 
-@Entity()
+@Entity('users')
 export class User {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    firstName: string;
+  @Column({ unique: true })
+  email: string;
 
-    @Column()
-    lastName: string;
+  @Column()
+  firstName: string;
 
-    @Column({ default: true })
-    isActive: boolean;
+  @Column()
+  lastName: string;
 
-    @OneToMany(() => Photo, photo => photo.user)
-    photos: Photo[]
+  @Column({ default: true })
+  isActive: boolean;
+
+  // One-to-One with Profile
+  @OneToOne(() => Profile, (profile) => profile.user, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn()
+  profile: Profile;
+
+  // One-to-Many with Post
+  @OneToMany(() => Post, (post) => post.author)
+  posts: Post[];
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
