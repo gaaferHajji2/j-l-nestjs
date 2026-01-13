@@ -14,10 +14,11 @@ import { Photo } from './photo/photo.entity';
       port: 3306,
       username: 'root',
       password: '123',
-      database: 'test',
+      database: 'nestjs_relations',
       autoLoadEntities: true,
       entities: [Photo],
-      synchronize: true
+      synchronize: false,
+      logging: true
     }),
     UsersModule
   ],
