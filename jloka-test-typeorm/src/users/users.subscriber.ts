@@ -1,6 +1,6 @@
 import { EntitySubscriberInterface, EventSubscriber, InsertEvent } from "typeorm";
 import { User } from "./user.entity";
-import { DataSource } from "typeorm/browser";
+import { DataSource } from "typeorm";
 
 @EventSubscriber()
 export class UserSubscriber implements EntitySubscriberInterface<User> {
