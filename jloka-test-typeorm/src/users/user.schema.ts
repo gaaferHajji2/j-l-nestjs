@@ -23,10 +23,4 @@ export const UserSchema = new EntitySchema<User>({
             default: true,
         },
     },
-    relations: {
-        photos: {
-            type: 'one-to-many',
-            target: 'Photo'
-        }
-    }
 })
