@@ -32,7 +32,7 @@ export class UsersController {
   }
 
   @Delete('/:id')
-  @HttpCode(HttpStatus.OK)
+  @HttpCode(HttpStatus.NO_CONTENT)
   public async removeUserData(@Param('id') id: string) {
     return this.usersService.remove(id)
   }

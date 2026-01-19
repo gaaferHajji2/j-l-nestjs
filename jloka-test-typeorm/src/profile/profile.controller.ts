@@ -44,13 +44,13 @@ export class ProfileController {
     }
 
     @Delete('/profile/:id')
-    @HttpCode(HttpStatus.OK)
+    @HttpCode(HttpStatus.NO_CONTENT)
     public async deleteProfileById(@Param('id') id: string) {
         return this.profileService.remove(id)
     }
 
     @Delete('/user/:userId')
-    @HttpCode(HttpStatus.OK)
+    @HttpCode(HttpStatus.NO_CONTENT)
     public async deleteProfileByUserId(@Param('userId') userId: string) {
         return this.profileService.removeByUserId(userId)
     }
