@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -29,5 +29,17 @@ export class UsersController {
   @HttpCode(HttpStatus.OK)
   public async updateUserData(@Param('id') id: string, updateUserDto: UpdateUserDto){
     return this.usersService.update(id, updateUserDto)
+  }
+
+  @Delete('/:id')
+  @HttpCode(HttpStatus.OK)
+  public async removeUserData(@Param('id') id: string) {
+    return this.usersService.remove(id)
+  }
+
+  @Get('/search/:searchTerm')
+  @HttpCode(HttpStatus.OK)
+  public async searchForUsers(@Param('searchTerm') searchTerm: string) {
+    return this.usersService.searchUsers(searchTerm)
   }
 }
