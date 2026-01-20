@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm'
 // import { User } from './users/user.entity';
 import { UsersModule } from './users/users.module';
-import { Photo } from './photo/photo.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ProfileModule } from './profile/profile.module';
 import { PostModule } from './post/post.module';
