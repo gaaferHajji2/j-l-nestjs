@@ -30,8 +30,9 @@ export class User {
 
   // One-to-One with Profile
   @OneToOne(() => Profile, (profile) => profile.user, {
-    cascade: true,
+    // cascade: true,
     onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
   })
   // @JoinColumn()
   profile: Profile;

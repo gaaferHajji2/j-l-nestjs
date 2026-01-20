@@ -86,11 +86,16 @@ export class UsersService {
       throw new NotFoundException(`User with ID ${id} not found`);
     }
 
+    // console.log(`The user email is: ${user.email}`)
+    // console.log(`The updated user email is: ${updateUserDto.email}`)
+
     // Check email uniqueness if email is being updated
     if (updateUserDto.email && updateUserDto.email !== user.email) {
       const existingUser = await this.userRepository.findOne({
         where: { email: updateUserDto.email },
       });
+      
+      // console.log(`The existing user is: ${existingUser}`)
 
       if (existingUser) {
         throw new ConflictException('Email already in use');
@@ -104,8 +109,8 @@ export class UsersService {
     if (updateUserDto.profile && user.profile) {
       Object.assign(user.profile, updateUserDto.profile);
     }
-
-    const updatedUser = await this.userRepository.save(user);
+    // here we must call the profile repository for updating
+    const updatedUser = await this.userRepository.save({...user, profile: user.profile});
 
     // Reload with relations
     const userWithRelations = await this.userRepository.findOne({
