@@ -33,7 +33,7 @@ export class User {
     cascade: true,
     onDelete: 'CASCADE',
   })
-  @JoinColumn()
+  // @JoinColumn()
   profile: Profile;
 
   // One-to-Many with Post
