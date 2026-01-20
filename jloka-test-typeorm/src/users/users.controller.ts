@@ -27,7 +27,7 @@ export class UsersController {
 
   @Put('/:id')
   @HttpCode(HttpStatus.OK)
-  public async updateUserData(@Param('id') id: string, updateUserDto: UpdateUserDto){
+  public async updateUserData(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto){
     return this.usersService.update(id, updateUserDto)
   }
 
