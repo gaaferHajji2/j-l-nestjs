@@ -13,8 +13,6 @@ export class CategoryService {
   constructor(
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>,
-    @InjectRepository(Post)
-    private postRepository: Repository<Post>,
   ) { }
   async create(createCategoryDto: CreateCategoryDto): Promise<CategoryResponseDto> {
     // Check if category with same name exists
@@ -135,5 +133,4 @@ export class CategoryService {
       excludeExtraneousValues: true,
     });
   }
-
 }
