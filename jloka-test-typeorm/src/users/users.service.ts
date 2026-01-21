@@ -136,11 +136,11 @@ export class UsersService {
   async searchUsers(searchTerm: string): Promise<UserResponseDto[]> {
     const users = await this.userRepository
       .createQueryBuilder('user')
-      .leftJoinAndSelect('user.profile', 'profile')
-      .where('user.email ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('user.firstName ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('user.lastName ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('profile.bio ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      // .leftJoinAndSelect('user.profile', 'profile')
+      .where('LOWER(user.email) LIKE :searchTerm', { searchTerm: `%${searchTerm.toLowerCase()}%` })
+      .orWhere('LOWER(user.firstName) LIKE :searchTerm', { searchTerm: `%${searchTerm.toLowerCase()}%` })
+      .orWhere('LOWER(user.lastName) LIKE :searchTerm', { searchTerm: `%${searchTerm.toLowerCase()}%` })
+      // .orWhere('profile.bio ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
       .orderBy('user.createdAt', 'DESC')
       .getMany();
 
