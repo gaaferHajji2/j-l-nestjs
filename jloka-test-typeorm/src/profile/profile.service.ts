@@ -138,12 +138,10 @@ export class ProfileService {
   }
 
   async removeByUserId(userId: string): Promise<void> {
-    const profile = await this.profileRepository.findOne({ where: { userId } });
-    
+    const profile = await this.profileRepository.findOne({ where: { userId: userId } });
     if (!profile) {
       throw new NotFoundException(`Profile for user with ID ${userId} not found`);
     }
-    
     await this.profileRepository.remove(profile);
   }
 
@@ -151,12 +149,12 @@ export class ProfileService {
     const profiles = await this.profileRepository
       .createQueryBuilder('profile')
       .leftJoinAndSelect('profile.user', 'user')
-      .where('profile.bio ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('profile.location ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('profile.website ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('user.email ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('user.firstName ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('user.lastName ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .where('profile.bio LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .orWhere('profile.location LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .orWhere('profile.website LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .orWhere('user.email LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .orWhere('user.firstName LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .orWhere('user.lastName LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
       .orderBy('profile.createdAt', 'DESC')
       .getMany();
     
