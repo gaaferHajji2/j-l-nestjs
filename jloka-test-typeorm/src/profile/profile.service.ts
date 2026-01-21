@@ -52,6 +52,8 @@ export class ProfileService {
       order: { createdAt: 'DESC' },
     });
     
+    console.log(`The user for profile is: ${profiles[0].user}`)
+    
     return plainToInstance(ProfileResponseDto, profiles, {
       excludeExtraneousValues: true,
     });

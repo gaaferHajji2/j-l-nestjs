@@ -1,4 +1,5 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
+import { UserResponseDto } from 'src/users/dto/user-response.dto';
 
 export class ProfileResponseDto {
   @Expose()
@@ -18,6 +19,10 @@ export class ProfileResponseDto {
 
   @Expose()
   userId: string;
+
+  @Expose()
+  @Type(() => UserResponseDto)
+  user: UserResponseDto;
 
   @Expose()
   createdAt: Date;
