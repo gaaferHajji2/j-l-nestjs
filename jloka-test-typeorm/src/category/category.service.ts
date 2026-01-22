@@ -124,8 +124,8 @@ export class CategoryService {
   async searchCategories(searchTerm: string): Promise<CategoryResponseDto[]> {
     const categories = await this.categoryRepository
       .createQueryBuilder('category')
-      .where('category.name ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('category.description ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .where('category.name LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .orWhere('category.description LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
       .orderBy('category.name', 'ASC')
       .getMany();
 
