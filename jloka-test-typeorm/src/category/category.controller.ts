@@ -28,7 +28,7 @@ export class CategoryController {
 
     @Put('/:id')
     @HttpCode(HttpStatus.OK)
-    async updateCatgeoryById(@Param('id') id: string, updateCategoryDto: UpdateCategoryDto) {
+    async updateCatgeoryById(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
         return this.categoryService.update(id, updateCategoryDto)
     }
 
