@@ -12,6 +12,7 @@ export class CategoryResponseDto {
   description?: string;
 
   @Expose()
+  @Type(() => Boolean)
   isActive: boolean;
 
   @Expose()
