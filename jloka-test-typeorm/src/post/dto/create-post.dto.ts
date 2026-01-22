@@ -25,7 +25,7 @@ export class CreatePostDto {
   @IsBoolean()
   isPublished?: boolean;
 
-  @IsUUID()
+  @IsUUID('4')
   authorId: string;
 
   @IsOptional()
