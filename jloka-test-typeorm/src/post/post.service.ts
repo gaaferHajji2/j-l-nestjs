@@ -190,8 +190,8 @@ export class PostService {
       .leftJoinAndSelect('post.author', 'author')
       .leftJoinAndSelect('author.profile', 'profile')
       .leftJoinAndSelect('post.categories', 'categories')
-      .where('post.title ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
-      .orWhere('post.content ILIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .where('post.title LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .orWhere('post.content LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
       .andWhere('post.isPublished = :isPublished', { isPublished: true })
       .orderBy('post.createdAt', 'DESC')
       .getMany();
