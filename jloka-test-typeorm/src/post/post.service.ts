@@ -78,7 +78,7 @@ export class PostService {
   async findOne(id: string): Promise<PostResponseDto> {
     const post = await this.postRepository.findOne({
       where: { id },
-      relations: ['author', 'author.profile', 'categories', 'tags'],
+      relations: ['author', 'author.profile', 'categories'],
     });
 
     if (!post) {
