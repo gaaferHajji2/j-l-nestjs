@@ -16,8 +16,6 @@ export class PostService {
     private postRepository: Repository<Post>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
-    @InjectRepository(Category)
-    private categoryRepository: Repository<Category>,
     private dataSource: DataSource,
   ) { }
 
