@@ -1,7 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
-import { CreateUploadDto } from '../dto/create-upload.dto/create-upload.dto';
+import { CreateUploadDto } from '../dto/create-upload.dto';
 
 @Injectable()
 export class FileUploadValidator {
