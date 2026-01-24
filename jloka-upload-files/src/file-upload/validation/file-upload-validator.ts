@@ -45,7 +45,7 @@ export class FileUploadValidator {
     return {
       mainImage: mainImage,
       secondaryImages: files.secondaryImages || [],
-      data: dto
+      data: body
     };
   }
 }
