@@ -6,7 +6,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class FileUploadController {
   constructor(private readonly fileUploadService: FileUploadService) {}
 
-  @Post()
+  @Post('/upload')
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     return this.fileUploadService.handleFileUpload(file);
