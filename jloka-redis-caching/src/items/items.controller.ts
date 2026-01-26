@@ -7,15 +7,8 @@ import { CacheInterceptor } from '@nestjs/cache-manager';
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
-  // @Get('/all')
-  // findAll() {
-  //   // This response will be automatically cached using the route path as the key
-  //   return this.itemsService.findAll();
-  // }
-
   @Post('/one/:id')
   findOne(@Param('id') id: string, @Body() item: {key: string, value: string}) {
     return this.itemsService.findOne(id, item);
   }
-
 }
