@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, UseInterceptors } from '@nestjs/common';
 import { ItemsService } from './items.service';
 import { CacheInterceptor } from '@nestjs/cache-manager';
 
@@ -14,8 +14,8 @@ export class ItemsController {
   }
 
   @Get('/one/:id')
-  findOne(@Param('id') id: string) {
-    return this.itemsService.findOne(id);
+  findOne(@Param('id') id: string, @Body() item: {key: string, value: string}) {
+    return this.itemsService.findOne(id, item);
   }
 
 }
