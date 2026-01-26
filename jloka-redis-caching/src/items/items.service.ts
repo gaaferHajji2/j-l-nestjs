@@ -9,8 +9,10 @@ export class ItemsService {
 
   async findOne(id: string, item: { key: string, value: string }) {
     const cachedItem = await this.cacheManager.get(id); // Use the get method
+    console.log("The cached item is: ", cachedItem)
 
     if (cachedItem) {
+      console.log("Return from cache")
       return cachedItem;
     }
 
@@ -21,7 +23,7 @@ export class ItemsService {
 
     return t1;
   }
-  async findAll() {
-    return this.cacheManager.mget(["*"])
-  }
+  // async findAll() {
+  //   return this.cacheManager.stores[0].getMany(["*"])
+  // }
 }

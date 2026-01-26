@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseInterceptors } from '@nestjs/common';
 import { ItemsService } from './items.service';
 import { CacheInterceptor } from '@nestjs/cache-manager';
 
@@ -7,13 +7,13 @@ import { CacheInterceptor } from '@nestjs/cache-manager';
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
-  @Get('/all')
-  findAll() {
-    // This response will be automatically cached using the route path as the key
-    return this.itemsService.findAll();
-  }
+  // @Get('/all')
+  // findAll() {
+  //   // This response will be automatically cached using the route path as the key
+  //   return this.itemsService.findAll();
+  // }
 
-  @Get('/one/:id')
+  @Post('/one/:id')
   findOne(@Param('id') id: string, @Body() item: {key: string, value: string}) {
     return this.itemsService.findOne(id, item);
   }
