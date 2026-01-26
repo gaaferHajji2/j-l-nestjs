@@ -7,10 +7,21 @@ export class ItemsService {
 
   constructor(@Inject(CACHE_MANAGER) private cacheManager: cacheManager_1.Cache) {}
 
-  findOne(id: string) {
-    throw new Error('Method not implemented.');
+  async findOne(id: string, item: { key: string, value: string }) {
+    const cachedItem = await this.cacheManager.get(id); // Use the get method
+
+    if (cachedItem) {
+      return cachedItem;
+    }
+
+    // const item = await this.fetchItemFromDatabase(id); // Replace with your database logic
+
+    // Set item in cache, with an optional specific TTL (e.g., 60 seconds)
+    const t1 = await this.cacheManager.set(id, item, 60000);
+
+    return t1;
   }
-  findAll() {
-    throw new Error('Method not implemented.');
+  async findAll() {
+    return this.cacheManager.mget(["*"])
   }
 }
