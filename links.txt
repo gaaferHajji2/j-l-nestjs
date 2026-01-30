@@ -1,0 +1,1 @@
+https://www.npmjs.com/package/@khoativi/nestjs-class-validator-i18n
