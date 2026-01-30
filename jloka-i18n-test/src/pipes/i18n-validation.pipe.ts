@@ -5,15 +5,19 @@ import { I18nService } from 'nestjs-i18n';
 
 @Injectable()
 export class JI18nValidationPipe implements PipeTransform<any> {
-  constructor(private readonly i18n: I18nService) {}
+  constructor(private readonly i18n: I18nService) {
+    console.log("JI18n Init")
+  }
 
   async transform(value: any, metadata: ArgumentMetadata) {
+    console.log("metadata.metatype: ", metadata.metatype)
     if (!metadata.metatype || !this.toValidate(metadata.metatype)) {
       return value;
     }
 
     const object = plainToInstance(metadata.metatype, value);
     const errors = await validate(object);
+    console.log("The supported languages: ", this.i18n.getSupportedLanguages())
 
     if (errors.length > 0) {
       const translatedErrors = await Promise.all(

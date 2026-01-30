@@ -9,15 +9,14 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       transform: true,
-      forbidNonWhitelisted: true
-    })
+      forbidNonWhitelisted: true,
+    }),
   )
 
-  // Use i18n validation pipe
-  app.useGlobalPipes(new I18nValidationPipe());
-  
-  // Use i18n exception filter for better error formatting
-  app.useGlobalFilters(new I18nValidationExceptionFilter());
+  app.useGlobalPipes(new I18nValidationPipe())
+
+  // // Use i18n exception filter for better error formatting
+  app.useGlobalFilters(new I18nValidationExceptionFilter);
 
   await app.listen(process.env.PORT ?? 3000);
 }

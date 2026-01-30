@@ -1,21 +1,7 @@
 {
   "validation": {
-    "isString": "{property} يجب أن يكون نصًا",
-    "isNotEmpty": "{property} يجب ألا يكون فارغًا",
-    "isNumber": "{property} يجب أن يكون رقمًا",
-    "isEmail": "{property} يجب أن يكون بريدًا إلكترونيًا صالحًا",
-    "minLength": "{property} يجب أن يكون أطول من أو يساوي {constraints.0} حرفًا",
-    "maxLength": "{property} يجب أن يكون أقصر من أو يساوي {constraints.0} حرفًا",
-    "isInt": "{property} يجب أن يكون رقمًا صحيحًا",
-    "isPositive": "{property} يجب أن يكون رقمًا موجبًا",
-    "min": "{property} يجب ألا يكون أقل من {constraints.0}",
-    "max": "{property} يجب ألا يكون أكبر من {constraints.0}",
-    "isArray": "{property} يجب أن يكون مصفوفة",
-    "arrayMinSize": "{property} يجب أن يحتوي على الأقل على {constraints.0} عنصر",
-    "arrayMaxSize": "{property} يجب ألا يحتوي على أكثر من {constraints.0} عنصر",
-    "isEnum": "{property} يجب أن يكون واحدًا من القيم التالية: {constraints.0}",
-    "matches": "{property} يجب أن يتطابق مع {constraints.0}",
-    "isBoolean": "{property} يجب أن يكون قيمة منطقية",
-    "isDateString": "{property} يجب أن يكون تاريخًا صالحًا بتنسيق ISO 8601"
+    "NOT_EMPTY": "{$property} cannot be empty - ar",
+    "INVALID_EMAIL": "{$property} must be an email address - ar",
+    "MIN": "{$property} must be at least {$constraint1} characters long - ar"
   }
 }
