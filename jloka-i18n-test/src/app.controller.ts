@@ -1,14 +1,13 @@
 import { Body, Controller, Post, UsePipes } from '@nestjs/common';
-import { AppService } from './app.service';
-import { I18nValidationPipe } from 'nestjs-i18n';
 import { CreateUserDto } from './dto/test.dto';
+import { JI18nValidationPipe } from './pipes/i18n-validation.pipe';
 
 @Controller()
 export class AppController {
   constructor() {}
-  
+
   @Post()
-  @UsePipes(I18nValidationPipe)
+  @UsePipes(JI18nValidationPipe)
   createUser(@Body() createUserDto: CreateUserDto) {
     return {
       message: 'User created successfully',

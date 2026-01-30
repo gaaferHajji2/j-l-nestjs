@@ -4,7 +4,7 @@ import { plainToInstance } from 'class-transformer';
 import { I18nService } from 'nestjs-i18n';
 
 @Injectable()
-export class I18nValidationPipe implements PipeTransform<any> {
+export class JI18nValidationPipe implements PipeTransform<any> {
   constructor(private readonly i18n: I18nService) {}
 
   async transform(value: any, metadata: ArgumentMetadata) {
