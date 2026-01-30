@@ -19,6 +19,7 @@ import { join } from 'path';
         },
       }),
       loader: I18nJsonLoader,
+      logging: true,
       resolvers: [
         { use: QueryResolver, options: ['lang', 'locale'] },
         new HeaderResolver(['x-custom-lang']),
