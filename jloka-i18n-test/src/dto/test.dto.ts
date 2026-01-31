@@ -1,12 +1,12 @@
-import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
-import { i18nValidationMessage } from 'nestjs-i18n';
+import { IsEmail, IsString, MinLength } from 'class-validator';
 
 export class CreateUserDto {
-  @IsNotEmpty({ message: i18nValidationMessage('validation.validation.NOT_EMPTY').name })
-  @IsEmail({}, { message: i18nValidationMessage('validation.validation.INVALID_EMAIL').name })
+  @IsString()
+  name: string;
+
+  @IsEmail()
   email: string;
 
-  @IsNotEmpty({ message: i18nValidationMessage('validation.validation.NOT_EMPTY').name })
-  @MinLength(5, { message: i18nValidationMessage('validation.validation.MIN', { constraint1: 5 }).name })
-  username: string;
+  @MinLength(6)
+  password: string;
 }

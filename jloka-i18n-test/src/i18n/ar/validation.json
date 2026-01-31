@@ -1,7 +1,6 @@
 {
-  "validation": {
-    "NOT_EMPTY": "{$property} cannot be empty - ar",
-    "INVALID_EMAIL": "{$property} must be an email address - ar",
-    "MIN": "{$property} must be at least {$constraint1} characters long - ar"
-  }
+  "NOT_EMPTY": "{property} cannot be empty - ar",
+  "INVALID_EMAIL": "{property} must be an email address - ar",
+  "MIN": "{property} must be at least {constraint.0} characters long - ar"
+
 }

@@ -1,22 +1,31 @@
-import { NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { I18nValidationExceptionFilter, I18nValidationPipe } from 'nestjs-i18n';
+import { 
+  I18nValidationException,
+  I18nValidationFilter, 
+  // I18nValidationPipe is also an option if you need a custom pipe instance
+} from '@khoativi/nestjs-class-validator-i18n'; 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       transform: true,
       forbidNonWhitelisted: true,
+      exceptionFactory: (errors): I18nValidationException =>
+        new I18nValidationException(errors),
+
     }),
-  )
+  );
 
-  app.useGlobalPipes(new I18nValidationPipe())
+  const adapterHost = app.get(HttpAdapterHost);
+  app.useGlobalFilters(
+    new I18nValidationFilter(adapterHost, { fallbackLanguage: 'en' }),
+  );
 
-  // // Use i18n exception filter for better error formatting
-  app.useGlobalFilters(new I18nValidationExceptionFilter);
 
   await app.listen(process.env.PORT ?? 3000);
 }

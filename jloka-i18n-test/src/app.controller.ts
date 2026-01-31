@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseFilters, UsePipes } from '@nestjs/common';
 import { CreateUserDto } from './dto/test.dto';
 import { JI18nValidationPipe } from './pipes/i18n-validation.pipe';
-import { I18n, I18nContext } from 'nestjs-i18n';
+import { I18n, I18nContext, I18nValidationExceptionFilter } from 'nestjs-i18n';
 
 @Controller()
 export class AppController {
@@ -18,6 +18,6 @@ export class AppController {
 
   @Get()
   getAbout(@I18n() i18n: I18nContext){
-    return i18n.t('validation.validation.NOT_EMPTY')
+    return i18n.t('validation.IS_STRING')
   }
 }
