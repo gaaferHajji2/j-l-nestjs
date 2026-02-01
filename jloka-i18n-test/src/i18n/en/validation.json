@@ -1,5 +1,8 @@
 {
-  "IS_STRING": "The {property} must be a string",
-  "IS_EMAIL": "Invalid email format for {property}",
-  "MIN_LENGTH": "{property} must be at least {constraint.0} characters"
+  "NOT_EMPTY": "{property} cannot be empty",
+  "INVALID_EMAIL": "email is invalid",
+  "INVALID_BOOLEAN": "{property} is not a boolean",
+  "MIN": "{property} with value: \"{value}\" needs to be at least {constraints.0}, ow and {message}",
+  "MAX": "{property} with value: \"{value}\" needs to be less than {constraints.0}, ow and {message}",
+  "IS_EMAIL": "JLoka-01 - en"
 }

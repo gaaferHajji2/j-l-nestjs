@@ -1,5 +1,0 @@
-{
-  "IS_STRING": "The {property} must be a string",
-  "IS_EMAIL": "Invalid email format for {property}",
-  "MIN_LENGTH": "{property} must be at least {constraint.0} characters"
-}

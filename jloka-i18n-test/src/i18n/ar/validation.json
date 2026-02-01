@@ -1,6 +1,6 @@
 {
   "NOT_EMPTY": "{property} cannot be empty - ar",
   "INVALID_EMAIL": "{property} must be an email address - ar",
-  "MIN": "{property} must be at least {constraint.0} characters long - ar"
-
+  "MIN": "{property} must be at least {constraint.0} characters long - ar",
+  "IS_EMAIL": "JLoka-01 - ar"
 }

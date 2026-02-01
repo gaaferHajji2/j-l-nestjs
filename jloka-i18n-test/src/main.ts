@@ -1,32 +1,17 @@
-import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { BadRequestExceptionFilter } from './exceptions/bad-request.exception.filter';
 import { ValidationPipe } from '@nestjs/common';
-import { 
-  I18nValidationException,
-  I18nValidationFilter, 
-  // I18nValidationPipe is also an option if you need a custom pipe instance
-} from '@khoativi/nestjs-class-validator-i18n'; 
+import { I18nService } from 'nestjs-i18n';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      transform: true,
-      forbidNonWhitelisted: true,
-      exceptionFactory: (errors): I18nValidationException =>
-        new I18nValidationException(errors),
+  const service = app.get(I18nService<Record<string, unknown>>)
 
-    }),
-  );
+  app.useGlobalFilters(new BadRequestExceptionFilter(service))
+  app.useGlobalPipes(new ValidationPipe())
 
-  const adapterHost = app.get(HttpAdapterHost);
-  app.useGlobalFilters(
-    new I18nValidationFilter(adapterHost, { fallbackLanguage: 'en' }),
-  );
-
-
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3000)
 }
 bootstrap();
