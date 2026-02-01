@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { AcceptLanguageResolver,  I18nJsonLoader, I18nModule, QueryResolver } from 'nestjs-i18n';
+import { AcceptLanguageResolver,  HeaderResolver,  I18nJsonLoader, I18nModule, QueryResolver } from 'nestjs-i18n';
 import { join } from 'path';
 
 @Module({
@@ -36,7 +36,8 @@ import { join } from 'path';
         watch: true,
       },
       resolvers: [
-        { use: QueryResolver, options: ['lang'] },
+        new QueryResolver(["lang", "l"]),
+        new HeaderResolver(["x-custom-lang"]),
         AcceptLanguageResolver,
       ],
     }),

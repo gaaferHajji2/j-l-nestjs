@@ -22,7 +22,8 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
     console.log("The context: ", Object.keys(exceptionResponse))
     console.log("Lang is: ", this.service.getSupportedLanguages())
     console.log("current: ", context?.lang)
-    console.log("Test-01: ", this.service.t(`validation.IS_EMAIL`))
+    console.log("Test-01: ", this.service.t(`validation.IS_EMAIL`, { lang: request.query['lang'] as string || 'en'}))
+    console.log("Test-02: ", context?.translate("validation.IS_EMAIL"))
 
     response.status(status)
       .json({
