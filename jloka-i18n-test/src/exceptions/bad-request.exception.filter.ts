@@ -17,7 +17,6 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
     let errors = exceptionResponse.message;
     if(Array.isArray(errors)) {
       errors = errors.map(error => {
-        console.log("extra: ", error.startsWith("extra."))
         if(error.startsWith("extra.")){
           error = error.split("extra.")[1]
         }
