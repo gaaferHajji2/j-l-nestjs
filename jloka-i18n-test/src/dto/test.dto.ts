@@ -21,10 +21,10 @@ export class ExtraUserDto {
 }
 
 export class CreateUserDto {
-  @IsNotEmpty({message: "EMAIL_NOT_EMPTY", context: { code: "EMAIL_EMPTY"}})
-  @IsEmail({ }, {message: "IS_EMAIL", context: { code: "EMAIL_FORMAT" }})
+  @IsNotEmpty({message: "validation.EMAIL_NOT_EMPTY"})
+  @IsEmail({ }, {message: "validation.INVALID_EMAIL"})
   email: string;
 
-  @IsNotEmpty({message: "PASSWORD_NOT_EMPTY", context: { code: "PASSWORD_EMPTY" }})
+  @IsNotEmpty({message: "validation.PASSWORD_NOT_EMPTY"})
   password: string;
 }

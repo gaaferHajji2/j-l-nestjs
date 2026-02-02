@@ -1,10 +1,5 @@
 {
-  "isNotEmpty": "{property} no puede estar vacío",
-  "isString": "{property} debe ser texto",
-  "minLength": "{property} debe tener al menos {constraints.0} caracteres",
-  "maxLength": "{property} no puede exceder {constraints.1} caracteres",
-  "isEmail": "Por favor proporcione un email válido",
-  "isInt": "{property} debe ser un número entero",
-  "min": "{property} debe ser al menos {constraints.0}",
-  "IS_EMAIL": "JLoka-01 - es"
+  "EMAIL_NOT_EMPTY": "email cannot be empty - es",
+  "PASSWORD_NOT_EMPTY": "password cannot be empty - es",
+  "INVALID_EMAIL": "email is invalid - es"
 }
