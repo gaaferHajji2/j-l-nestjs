@@ -17,19 +17,31 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
     const exceptionResponse = exception.getResponse() as any;
     
     // console.log("Stack is: ", exception.stack)
-    console.log("The errors: ", exceptionResponse.message)
-    console.log("The error: ", exceptionResponse.error)
-    console.log("The context: ", Object.keys(exceptionResponse))
-    console.log("Lang is: ", this.service.getSupportedLanguages())
-    console.log("current: ", context?.lang)
-    console.log("Test-01: ", this.service.t(`validation.IS_EMAIL`, { lang: request.query['lang'] as string || 'en'}))
-    console.log("Test-02: ", context?.translate("validation.IS_EMAIL"))
+    // console.log("The errors: ", exceptionResponse.message)
+    // console.log("The error: ", exceptionResponse.error)
+    // console.log("The context: ", Object.keys(exceptionResponse))
+    // console.log("Lang is: ", this.service.getSupportedLanguages())
+    // console.log("current: ", context?.lang)
+    // console.log("Test-01: ", this.service.t(`validation.IS_EMAIL`, { lang: request.query['lang'] as string || 'en'}))
+    // console.log("Test-02: ", context?.translate("validation.IS_EMAIL"))
+
+    let errors = exceptionResponse.message;
+
+    if(Array.isArray(errors)) {
+
+      errors = errors.map(error => this.service.translate(error, 
+        { lang: request.query['lang'] as string || 'en'}))
+
+    } else {
+      errors = this.service.translate(errors, { lang: request.query['lang'] as string || 'en'})
+    }
 
     response.status(status)
       .json({
         statusCode: status,
         timestamp: new Date().toISOString(),
         path: request.url,
+        errors
       });
   }
 }
