@@ -1,19 +1,19 @@
+import { Type } from 'class-transformer';
 import {
   IsBoolean,
-  IsDefined,
   IsEmail,
   IsNotEmpty,
+  IsNotEmptyObject,
   Max,
   Min,
   ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
 
 export class ExtraUserDto {
   @IsBoolean()
   subscribeToEmail: string;
 
-  @Min(5)
+  @Min(5, { message: "validation.MIN_MIN"})
   min: number;
 
   @Max(10)
@@ -27,4 +27,9 @@ export class CreateUserDto {
 
   @IsNotEmpty({message: "validation.PASSWORD_NOT_EMPTY"})
   password: string;
+
+  @ValidateNested()
+  @Type(() => ExtraUserDto)
+  @IsNotEmptyObject({}, { message: "validation.EXTRA_REQUIRED"})
+  extra: ExtraUserDto;
 }

@@ -17,7 +17,7 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
     const exceptionResponse = exception.getResponse() as any;
     
     // console.log("Stack is: ", exception.stack)
-    // console.log("The errors: ", exceptionResponse.message)
+    console.log("The errors: ", exceptionResponse.message)
     // console.log("The error: ", exceptionResponse.error)
     // console.log("The context: ", Object.keys(exceptionResponse))
     // console.log("Lang is: ", this.service.getSupportedLanguages())
@@ -29,8 +29,13 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
 
     if(Array.isArray(errors)) {
 
-      errors = errors.map(error => this.service.translate(error, 
-        { lang: request.query['lang'] as string || 'en'}))
+      errors = errors.map(error => {
+        console.log("extra: ", error.startsWith("extra."))
+        if(error.startsWith("extra.")){
+          error = error.split("extra.")[1]
+        }
+        return this.service.translate(error, { lang: request.query['lang'] as string || 'en'})
+      })
 
     } else {
       errors = this.service.translate(errors, { lang: request.query['lang'] as string || 'en'})

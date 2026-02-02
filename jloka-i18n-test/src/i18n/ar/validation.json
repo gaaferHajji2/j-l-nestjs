@@ -1,5 +1,7 @@
 {
   "EMAIL_NOT_EMPTY": "email cannot be empty - ar",
   "PASSWORD_NOT_EMPTY": "password cannot be empty - ar",
-  "INVALID_EMAIL": "email is invalid - ar"
+  "INVALID_EMAIL": "email is invalid - ar",
+  "EXTRA_REQUIRED": "Extra required - ar",
+  "MIN_MIN": "min >= 5 - ar"
 }
