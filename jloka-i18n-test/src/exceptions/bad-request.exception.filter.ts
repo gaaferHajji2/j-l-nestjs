@@ -1,6 +1,6 @@
 import { ArgumentsHost, BadRequestException, Catch, ExceptionFilter } from "@nestjs/common";
 import { Request, Response } from 'express'
-import { I18nContext, I18nService } from "nestjs-i18n";
+import { I18nService } from "nestjs-i18n";
 
 @Catch(BadRequestException)
 export class BadRequestExceptionFilter implements ExceptionFilter {
@@ -12,23 +12,10 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
-    const context = I18nContext.current();
-
     const exceptionResponse = exception.getResponse() as any;
     
-    // console.log("Stack is: ", exception.stack)
-    console.log("The errors: ", exceptionResponse.message)
-    // console.log("The error: ", exceptionResponse.error)
-    // console.log("The context: ", Object.keys(exceptionResponse))
-    // console.log("Lang is: ", this.service.getSupportedLanguages())
-    // console.log("current: ", context?.lang)
-    // console.log("Test-01: ", this.service.t(`validation.IS_EMAIL`, { lang: request.query['lang'] as string || 'en'}))
-    // console.log("Test-02: ", context?.translate("validation.IS_EMAIL"))
-
     let errors = exceptionResponse.message;
-
     if(Array.isArray(errors)) {
-
       errors = errors.map(error => {
         console.log("extra: ", error.startsWith("extra."))
         if(error.startsWith("extra.")){
@@ -36,7 +23,6 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
         }
         return this.service.translate(error, { lang: request.query['lang'] as string || 'en'})
       })
-
     } else {
       errors = this.service.translate(errors, { lang: request.query['lang'] as string || 'en'})
     }
