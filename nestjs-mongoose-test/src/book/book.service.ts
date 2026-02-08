@@ -4,6 +4,7 @@ import { Book, BookDocument } from './schemas/book.schema';
 import { Model, Types } from 'mongoose';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { Author, AuthorDocument } from 'src/author/schemas/author.schema';
 
 interface PopulateConfig {
   author?: boolean;
@@ -15,6 +16,7 @@ interface PopulateConfig {
 export class BookService {
     constructor(
     @InjectModel(Book.name) private bookModel: Model<BookDocument>,
+    @InjectModel(Author.name) private authorModel: Model<AuthorDocument>
   ) {}
 
   async create(createBookDto: CreateBookDto): Promise<Book> {
@@ -76,10 +78,11 @@ export class BookService {
 
   async findByAuthor(authorId: string, populateConfig: PopulateConfig = {}): Promise<Book[]> {
     if(!Types.ObjectId.isValid(authorId)) {
-        throw new BadRequestException("AuthorId not valid")
+      throw new BadRequestException("AuthorId not valid")
     }
 
-    let query = this.bookModel.find({ author: authorId })
+    let author = await this.authorModel.findById(authorId).exec()
+    let query = this.bookModel.find({ author } )
 
     if (populateConfig.categories) {
       query = query.populate('categories')
