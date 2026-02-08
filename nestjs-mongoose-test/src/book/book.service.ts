@@ -75,7 +75,6 @@ export class BookService {
   }
 
   async findByAuthor(authorId: string, populateConfig: PopulateConfig = {}): Promise<Book[]> {
-
     if(!Types.ObjectId.isValid(authorId)) {
         throw new BadRequestException("AuthorId not valid")
     }
