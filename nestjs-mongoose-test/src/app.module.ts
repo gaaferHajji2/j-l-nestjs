@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { MongooseModule } from '@nestjs/mongoose';
         uri: configService.get<string>('MONGOOSE_URI') || "mongodb://localhost:27017/jloka_library"
       }),
       inject: [ConfigService]
-    })
+    }),
+    CategoryModule
   ],
   controllers: [AppController],
   providers: [AppService],

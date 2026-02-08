@@ -15,6 +15,8 @@ export const Populate = createParamDecorator(
     Object.keys(data).forEach(key => {
       if (query[`populate${key.charAt(0).toUpperCase() + key.slice(1)}`] === 'true') {
         populateConfig[key] = true;
+      } else {
+        console.log("Key: ", query[key])
       }
     });
     
