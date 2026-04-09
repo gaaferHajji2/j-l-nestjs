@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Param, Post, UseInterceptors } from '@nestjs/common';
 import { ItemsService } from './items.service';
 import { CacheInterceptor } from '@nestjs/cache-manager';
 
