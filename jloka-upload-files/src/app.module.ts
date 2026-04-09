@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
-import { FileUploadModule } from './file-upload/file-upload.module';
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { ConfigModule } from '@nestjs/config'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { join } from 'path'
+import { FileUploadModule } from './file-upload/file-upload.module'
 
 @Module({
   imports: [
@@ -15,7 +15,8 @@ import { FileUploadModule } from './file-upload/file-upload.module';
   ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads',
-  }), FileUploadModule
+  }), 
+  FileUploadModule
 ],
   controllers: [AppController],
   providers: [AppService],
