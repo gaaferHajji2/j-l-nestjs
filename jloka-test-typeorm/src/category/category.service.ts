@@ -1,7 +1,7 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from './category.entity';
-import { Post } from 'src/post/post.entity';
+// import { Post } from 'src/post/post.entity';
 import { Repository } from 'typeorm';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { CategoryResponseDto } from './dto/category-response.dto';
@@ -10,10 +10,12 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Injectable()
 export class CategoryService {
+  
   constructor(
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>,
   ) { }
+
   async create(createCategoryDto: CreateCategoryDto): Promise<CategoryResponseDto> {
     // Check if category with same name exists
     const existingCategory = await this.categoryRepository.findOne({

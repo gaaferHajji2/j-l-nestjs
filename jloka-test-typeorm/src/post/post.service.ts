@@ -182,6 +182,7 @@ export class PostService {
       excludeExtraneousValues: true,
     });
   }
+  
   async searchPosts(searchTerm: string): Promise<PostResponseDto[]> {
     const posts = await this.postRepository
       .createQueryBuilder('post')
