@@ -52,7 +52,7 @@ export class ProfileService {
       order: { createdAt: 'DESC' },
     });
     
-    console.log(`The user for profile is: ${profiles[0].user}`)
+    // console.log(`The user for profile is: ${profiles[0].user}`)
     
     return plainToInstance(ProfileResponseDto, profiles, {
       excludeExtraneousValues: true,
@@ -100,7 +100,7 @@ export class ProfileService {
     }
     
     Object.assign(profile, updateProfileDto);
-    
+
     const updatedProfile = await this.profileRepository.save(profile);
     
     return plainToInstance(ProfileResponseDto, updatedProfile, {
