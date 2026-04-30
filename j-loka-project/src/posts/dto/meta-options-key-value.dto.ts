@@ -4,8 +4,8 @@ import { IsString, IsNotEmpty } from 'class-validator';
 export class MetaOptionsKeyValue {
   @IsString()
   @IsNotEmpty()
-  key: string;
+  key!: string;
 
   @IsNotEmpty()
-  value: any;
+  value!: any;
 }

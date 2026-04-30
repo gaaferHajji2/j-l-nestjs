@@ -11,5 +11,5 @@ export class GetUsersParamDto {
     })
     @IsInt()
     @Type(() => Number)
-    id: number;
+    id!: number;
 }

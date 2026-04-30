@@ -5,7 +5,7 @@ export class CreateUserDto {
 	@IsString()
 	@IsNotEmpty()
 	@Length(3, 255)
-  firstName: string;
+  firstName!: string;
 
 	@IsString()
 	@IsOptional()
@@ -14,10 +14,10 @@ export class CreateUserDto {
   
 	@IsEmail()
 	@IsNotEmpty()
-	email: string;
+	email!: string;
   
 	@IsString()
 	@IsNotEmpty()
 	@Length(5, 150)
-	password: string;  
+	password!: string;  
 }

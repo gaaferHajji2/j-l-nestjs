@@ -10,14 +10,14 @@ export class CreatePostDto {
     @IsString()
     @Length(2, 255)
     @IsNotEmpty()
-    title: string;
+    title!: string;
 
     @ApiProperty({
         enum: PostType,
     })
     @IsEnum(PostType)
     @IsNotEmpty()
-    postType: PostType;
+    postType!: PostType;
 
     @ApiProperty({
         example: "jloka-example-01"
@@ -28,14 +28,14 @@ export class CreatePostDto {
     @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
         message: 'slug must contains only small letters, digits, hyphen and can\'t start with -'
     }) // from qwen.ai
-    slug: string;
+    slug!: string;
 
     @ApiProperty({
         enum: PostStatus,
     })
     @IsEnum(PostStatus)
     @IsNotEmpty()
-    status: PostStatus;
+    status!: PostStatus;
 
     @ApiPropertyOptional()
     @IsString()
