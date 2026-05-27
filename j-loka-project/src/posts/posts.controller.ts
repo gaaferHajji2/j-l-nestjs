@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common'
 import { PostsService } from './posts.service'
 import { CreatePostDto } from './dto/create-post.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { PatchPostDto } from './dto/patch-post.dto';
 
 @Controller('posts')
 export class PostsController {
@@ -28,5 +29,10 @@ export class PostsController {
     @Post('/')
     public createPost(@Body() createPostDto: CreatePostDto) {
         return createPostDto;
+    }
+
+    @Patch('/')
+    public patchPost(@Body() patchPostDto: PatchPostDto) {
+        return patchPostDto;
     }
 }
