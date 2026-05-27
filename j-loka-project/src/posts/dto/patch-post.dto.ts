@@ -1,7 +1,11 @@
+import { IsInt, IsNotEmpty } from "class-validator";
 import { CreatePostDto } from "./create-post.dto";
-import { PartialType } from "@nestjs/swagger";
+import { ApiProperty, PartialType } from "@nestjs/swagger";
 
 
 export class PatchPostDto extends PartialType(CreatePostDto) {
-
+    @ApiProperty()
+    @IsInt()
+    @IsNotEmpty()
+    id!: number;
 }
