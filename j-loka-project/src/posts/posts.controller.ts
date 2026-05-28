@@ -31,6 +31,13 @@ export class PostsController {
         return createPostDto;
     }
 
+    @ApiOperation({
+        summary: "Update A Post By Id"
+    })
+    @ApiResponse({
+        status: 200,
+        description: "200 if the post updated successfully"
+    })
     @Patch('/')
     public patchPost(@Body() patchPostDto: PatchPostDto) {
         return patchPostDto;
