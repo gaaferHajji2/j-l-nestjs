@@ -9,9 +9,16 @@ import { AuthModule } from './auth/auth.module'
 
 @Module({
   imports: [UsersModule, PostsModule, AuthModule, TypeOrmModule.forRoot({
-    type: 'postgres',
-    entities: []
-  })],
+      type: 'postgres',
+      entities: [],
+      synchronize: true,
+      port: 5432,
+      host: 'localhost',
+      username: 'postgres',
+      password: 'Jafar_Loka_1',
+      database: 'nestjs-blog',
+    })
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
