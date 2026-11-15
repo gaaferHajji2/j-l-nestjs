@@ -45,7 +45,22 @@ export class Product extends AggregateRoot {
     }
 
     static create(name: string, description: string, sku: string, price: Money, stock: number) {
+        Product.validateName(name)
+        Product.validateStock(stock)
 
+        const now = new Date()
+        return new Product({
+            id: new ProductId(),
+            name,
+            description,
+            price,
+            sku: Sku.create(sku),
+            stock,
+            isActive: true,
+            lowStockThreshold: 5,
+            createdAt: now,
+            updatedAt: now,
+        })
     }
 
     static validateName(name: string) {
