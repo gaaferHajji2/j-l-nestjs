@@ -43,4 +43,20 @@ export class Product extends AggregateRoot {
         this._createdAt = props.createdAt
         this._updatedAt = props.updatedAt
     }
+
+    static create(name: string, description: string, sku: string, price: Money, stock: number) {
+
+    }
+
+    static validateName(name: string) {
+        if(name.length < 2 || name.length > 255) {
+            throw new Error('Name Length Must be Between 2 and 255 characters')
+        }
+    }
+
+    static validateStock(stock: number) {
+        if(stock < 0) {
+            throw new Error('Stock cannot be Negative')
+        }
+    }
 }
