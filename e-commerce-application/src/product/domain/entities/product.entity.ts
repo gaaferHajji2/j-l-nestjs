@@ -44,7 +44,7 @@ export class Product extends AggregateRoot {
         this._updatedAt = props.updatedAt
     }
 
-    static create(name: string, description: string, sku: string, price: Money, stock: number) {
+    static create(name: string, description: string, sku: string, price: Money, stock: number): Product {
         Product.validateName(name)
         Product.validateStock(stock)
 
