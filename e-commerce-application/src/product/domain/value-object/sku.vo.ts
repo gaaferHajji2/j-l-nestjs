@@ -12,7 +12,7 @@ export class Sku {
     static create(value: string): Sku {
         const trimmed = value.trim()
 
-        if(value.length < Sku.MIN_LENGTH || value.length > Sku.MAX_LENGTH) {
+        if(trimmed.length < Sku.MIN_LENGTH || trimmed.length > Sku.MAX_LENGTH) {
             throw new Error(
                 `SKU must be between ${Sku.MIN_LENGTH} and ${Sku.MAX_LENGTH} characters`
             )
